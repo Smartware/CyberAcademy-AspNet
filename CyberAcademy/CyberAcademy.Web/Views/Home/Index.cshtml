@@ -1,39 +1,35 @@
-﻿
+﻿@model Product
 @{
     ViewBag.Title = "Index";
 }
-@section styles{
-    <style>
-        #box {
-            margin: 0px;
-            display: inline;
-            padding: 200px;
+@using (Html.BeginForm("CreateProduct", "Home", FormMethod.Post, new { name="productForm"}))
+{
+    <div>
+        @Html.LabelFor(p => p.Name, "Product Name")
+        <input type="text" name="name" id="name" value="@Model.Name" />
+    </div>
+    <div>
+        @Html.LabelFor(p => p.Description, "Product Description")
+        @Html.EditorFor(p => p.Description)
+    </div>
+
+    <div>
+        @Html.LabelFor(p => p.IsExpired, "Product Expired")
+        @Html.EditorFor(p => p.IsExpired)
+    </div>
+
+    <a href="javascript:;" onclick="submitForm()">Save</a>
+    @*<button type="submit" onclick="confirm('Are you sure?')">Save</button>*@
+}
+
+
+    <script>
+
+        function submitForm() {
+
+            if (!confirm('Are you sure?'))
+                return false;
+
+            productForm.submit();
         }
-    </style>
-
-}
-
-<div id="box" style="@ViewBag.Styles">
-    @if (true)
-    {
-        <img src="@ViewBag.Female" alt="profile" />
-    }
-    else
-    {
-        <img src="@ViewBag.Male" alt="profile" />
-    }
-</div>
-
-@section scripts{
-    <script type="text/javascript">
-
-        @*(function () {
-
-            alert('@ViewBag.Styles');
-
-        })();*@
     </script>
-
-
-}
-
