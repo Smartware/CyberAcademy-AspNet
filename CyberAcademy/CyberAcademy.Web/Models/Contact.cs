@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CyberAcademy.Web.Models
 {
-    public class Contact : IdentityUser
+    public class Contact
     {
         private Contact()
         {

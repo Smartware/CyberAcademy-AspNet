@@ -13,7 +13,7 @@ namespace CyberAcademy.Web.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201804241028383_InitialModel"; }
+            get { return "201804241444266_InitialModel"; }
         }
         
         string IMigrationMetadata.Source

@@ -26,13 +26,13 @@ namespace CyberAcademy.Web
             app.UseCookieAuthentication(option);
         }
 
-        public static UserManager<Contact> Create()
+        public static UserManager<AppUser, Guid> Create()
         {
             var dbContext = new AcademyDbContext();
-            var store = new UserStore<Contact>(dbContext);
-            var usermanager = new UserManager<Contact>(store);
+            var store = new UserStore<AppUser,>(dbContext);
+            var usermanager = new UserManager<AppUser>(store);
             // allow alphanumeric characters in username
-            usermanager.UserValidator = new UserValidator<Contact>(usermanager)
+            usermanager.UserValidator = new UserValidator<AppUser>(usermanager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = false,

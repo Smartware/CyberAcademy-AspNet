@@ -423,12 +423,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804241028383_InitialModel.cs" />
-    <Compile Include="Migrations\201804241028383_InitialModel.Designer.cs">
-      <DependentUpon>201804241028383_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201804241444266_InitialModel.cs" />
+    <Compile Include="Migrations\201804241444266_InitialModel.Designer.cs">
+      <DependentUpon>201804241444266_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\RegisterInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -546,8 +547,8 @@
     <Folder Include="Logics\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804241028383_InitialModel.resx">
-      <DependentUpon>201804241028383_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804241444266_InitialModel.resx">
+      <DependentUpon>201804241444266_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

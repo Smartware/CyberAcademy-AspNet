@@ -11,7 +11,7 @@ namespace CyberAcademy.Web.Migrations
                 "dbo.AspNetRoles",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 256),
                     })
                 .PrimaryKey(t => t.Id)
@@ -21,8 +21,8 @@ namespace CyberAcademy.Web.Migrations
                 "dbo.AspNetUserRoles",
                 c => new
                     {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
+                        UserId = c.Guid(nullable: false),
+                        RoleId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
                 .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
@@ -34,11 +34,7 @@ namespace CyberAcademy.Web.Migrations
                 "dbo.AspNetUsers",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ProfileImage = c.String(),
-                        Name = c.String(),
-                        CreatedOn = c.DateTime(nullable: false),
-                        IsActive = c.Boolean(nullable: false),
+                        Id = c.Guid(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -59,7 +55,7 @@ namespace CyberAcademy.Web.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserId = c.String(nullable: false, maxLength: 128),
+                        UserId = c.Guid(nullable: false),
                         ClaimType = c.String(),
                         ClaimValue = c.String(),
                     })
@@ -73,7 +69,7 @@ namespace CyberAcademy.Web.Migrations
                     {
                         LoginProvider = c.String(nullable: false, maxLength: 128),
                         ProviderKey = c.String(nullable: false, maxLength: 128),
-                        UserId = c.String(nullable: false, maxLength: 128),
+                        UserId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
