@@ -23,5 +23,11 @@ namespace CyberAcademy.Web.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }
