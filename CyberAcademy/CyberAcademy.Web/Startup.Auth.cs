@@ -14,7 +14,8 @@ namespace CyberAcademy.Web
 {
     public partial class Startup
     {
-        public static Func<UserManager<Contact>> UserManagerFactory { get; private set; } = Create;
+        public static Func<RoleManager<AppRole, int>> RoleManagerFactory { get; private set; } = CreateRole;
+        public static Func<UserManager<AppUser, int>> UserManagerFactory { get; private set; } = Create;
         public static void ConfigureAuth(IAppBuilder app)
         {
             var option = new CookieAuthenticationOptions()
@@ -26,13 +27,22 @@ namespace CyberAcademy.Web
             app.UseCookieAuthentication(option);
         }
 
-        public static UserManager<AppUser, Guid> Create()
+        public static RoleManager<AppRole, int> CreateRole()
         {
             var dbContext = new AcademyDbContext();
-            var store = new UserStore<AppUser,>(dbContext);
-            var usermanager = new UserManager<AppUser>(store);
+            var rolestore = new RoleStore<AppRole, int, AppUserRole>(dbContext);
+            var rolemanager = new RoleManager<AppRole, int>(rolestore);
             // allow alphanumeric characters in username
-            usermanager.UserValidator = new UserValidator<AppUser>(usermanager)
+            return rolemanager;
+        }
+
+        public static UserManager<AppUser, int> Create()
+        {
+            var dbContext = new AcademyDbContext();
+            var store = new UserStore<AppUser,AppRole,int, AppUserLogin, AppUserRole, AppUserClaim>(dbContext);
+            var usermanager = new UserManager<AppUser, int>(store);
+            // allow alphanumeric characters in username
+            usermanager.UserValidator = new UserValidator<AppUser, int>(usermanager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = false,

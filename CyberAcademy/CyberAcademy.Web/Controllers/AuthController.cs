@@ -12,7 +12,7 @@ namespace CyberAcademy.Web.Controllers
     [AllowAnonymous]
     public class AuthController : Controller
     {
-        private UserManager<Contact> _userManager;
+        private UserManager<AppUser, int> _userManager;
         public AuthController()
         {
             _userManager = Startup.UserManagerFactory.Invoke();

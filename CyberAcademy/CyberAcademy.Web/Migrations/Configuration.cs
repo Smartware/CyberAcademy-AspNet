@@ -18,6 +18,21 @@ namespace CyberAcademy.Web.Migrations
 
         protected override void Seed(CyberAcademy.Web.DataAccess.AcademyDbContext context)
         {
+
+
+            string[] roles = new string[2] { "ADMIN", "STAFF" };
+            var roleStore = new RoleStore<AppRole, int, AppUserRole>(new AcademyDbContext());
+            var roleManager = new RoleManager<AppRole, int>(roleStore);
+
+            Array.ForEach(roles, r => 
+            {
+                if (roleManager.RoleExists(r))
+                    return;
+
+                roleManager.Create(new AppRole() { Name = r });
+            });
+
+
             string username = "admin@cyberspace.com";
             string password = "admin";
             string role = "ADMIN";
@@ -31,16 +46,15 @@ namespace CyberAcademy.Web.Migrations
                 return;
 
 
-            var contact = Contact.Create(username, DateTime.Now);
+            var contact = new AppUser() { UserName = username };
             var result = userMgr.Create(contact, password);
 
-            var roleStore = new RoleStore<IdentityRole>(new AcademyDbContext());
-            var roleManager = new RoleManager<IdentityRole>(roleStore);
+           
 
 
             if (!roleManager.RoleExists(role))
             {
-                var irole = new IdentityRole() { Name = role };
+                var irole = new AppRole() { Name = role };
                 roleManager.Create(irole);
             }
 
@@ -48,19 +62,6 @@ namespace CyberAcademy.Web.Migrations
             {
                 userMgr.AddToRole(contact.Id, role);
             }
-
-            //  This method will be called after migrating to the latest version.
-
-                //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-                //  to avoid creating duplicate seed data. E.g.
-                //
-                //    context.People.AddOrUpdate(
-                //      p => p.FullName,
-                //      new Person { FullName = "Andrew Peters" },
-                //      new Person { FullName = "Brice Lambson" },
-                //      new Person { FullName = "Rowan Miller" }
-                //    );
-                //
         }
     }
 }

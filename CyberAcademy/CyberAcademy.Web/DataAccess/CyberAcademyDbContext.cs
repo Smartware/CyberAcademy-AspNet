@@ -7,7 +7,7 @@ using System.Web;
 
 namespace CyberAcademy.Web.DataAccess
 {
-    public class AcademyDbContext:IdentityDbContext<AppUser, AppRole, Guid, AppUserLogin, AppUserRole, AppUserClaim>
+    public class AcademyDbContext:IdentityDbContext<AppUser, AppRole, int, AppUserLogin, AppUserRole, AppUserClaim>
     {
         public AcademyDbContext(): base($"name={nameof(AcademyDbContext)}")
         {

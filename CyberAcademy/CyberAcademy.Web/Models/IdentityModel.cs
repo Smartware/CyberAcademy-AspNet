@@ -6,24 +6,24 @@ using System.Web;
 
 namespace CyberAcademy.Web.Models
 {
-    public class AppUser: IdentityUser<Guid, AppUserLogin, AppUserRole, AppUserClaim>
+    public class AppUser: IdentityUser<int, AppUserLogin, AppUserRole, AppUserClaim>
     {
     }
 
-    public class AppRole: IdentityRole<Guid, AppUserRole>
+    public class AppRole: IdentityRole<int, AppUserRole>
     {
 
     }
-    public class AppUserLogin: IdentityUserLogin<Guid>
+    public class AppUserLogin: IdentityUserLogin<int>
     {
     }
 
-    public class AppUserRole: IdentityUserRole<Guid>
+    public class AppUserRole: IdentityUserRole<int>
     {
 
     }
 
-    public class AppUserClaim: IdentityUserClaim<Guid>
+    public class AppUserClaim: IdentityUserClaim<int>
     {
 
     }

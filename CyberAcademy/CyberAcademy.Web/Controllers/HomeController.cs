@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace CyberAcademy.Web.Controllers
 {
-    [Authorize(Roles = "ADMIN, STAFF")]
+    [Authorize()]
     public class HomeController : Controller
     {
 

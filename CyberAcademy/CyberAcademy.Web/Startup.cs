@@ -8,6 +8,7 @@ using CyberAcademy.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using CyberAcademy.Web.App_Start;
+using System.Web.Http;
 
 [assembly:OwinStartup(typeof(Startup))]
 namespace CyberAcademy.Web
@@ -19,7 +20,12 @@ namespace CyberAcademy.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.Configure(GlobalFilters.Filters);
+
+            var config = new HttpConfiguration();
+            WebApiConfig.Register(config);
+            app.UseWebApi(config);
             ConfigureAuth(app);
+
         }
     }
 }
