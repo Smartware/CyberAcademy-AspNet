@@ -2,39 +2,122 @@
 @{
     ViewBag.Title = "Index";
 }
-@section styles{
-    <style>
-        #box {
-            margin: 0px;
-            display: inline;
-            padding: 200px;
-        }
-    </style>
 
+@section styles{
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
 }
 
-<h1>@Html.Action("SomePage")</h1>
-<div id="box" style="@ViewBag.Styles">
-    @if (true)
-    {
-        <img src="@ViewBag.Female" alt="profile" />
-    }
-    else
-    {
-        <img src="@ViewBag.Male" alt="profile" />
-    }
+<!-- Page content start -->
+<div class="page-contentbar">
+
+    <!-- START PAGE CONTENT -->
+    <div id="page-right-content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="header-title m-t-0 m-b-20">Dashboard - @User.Identity.Name</h4>
+                </div>
+            </div> <!-- end row -->
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card-box">
+                        <a href="#" class="btn btn-sm btn-default pull-right">View</a>
+                        <h6 class="text-muted m-t-0 text-uppercase">Product Sold</h6>
+                        <h2 class="m-b-20"><span>1,890</span></h2>
+                        <div class="progress progress-sm m-0">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
+                                <span class="sr-only">77% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card-box">
+                        <a href="#" class="btn btn-sm btn-default pull-right">View</a>
+                        <h6 class="text-muted m-t-0 text-uppercase">Average Price</h6>
+                        <h2 class="m-b-20">$<span>22.56</span></h2>
+                        <div class="progress progress-sm m-0">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
+                                <span class="sr-only">77% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card-box">
+                        <a href="#" class="btn btn-sm btn-default pull-right">View</a>
+                        <h6 class="text-muted m-t-0 text-uppercase">Orders</h6>
+                        <h2 class="m-b-20">9,754</h2>
+                        <div class="progress progress-sm m-0">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
+                                <span class="sr-only">77% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end row -->
+
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card-box">
+                        <h4 class="m-t-0">Total Revenue</h4>
+                        <div class="text-center">
+                            <ul class="list-inline chart-detail-list">
+                                <li>
+                                    <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Series A</h5>
+                                </li>
+                                <li>
+                                    <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-muted"></i>Series B</h5>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="dashboard-bar-stacked" style="height: 300px;"></div>
+                    </div>
+                </div> <!-- end col -->
+
+                @Html.Partial("_SalesAnalytics", ViewData)
+            </div> <!-- end row -->
+        </div>
+        <!-- end container -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="pull-right hidden-xs">
+                            Project Completed <strong class="text-custom">43%</strong>.
+                        </div>
+                        <div>
+                            <strong>Simple Admin</strong> - Copyright &copy; 2017
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end footer -->
+
+    </div>
+    <!-- End #page-right-content -->
+
+    <div class="clearfix"></div>
+
 </div>
+<!-- end .page-contentbar -->
+
 
 @section scripts{
-    <script type="text/javascript">
 
-        @*(function () {
+    <!--Morris Chart-->
+    <script src="~/Content/assets/plugins/morris/morris.min.js"></script>
+    <script src="~/Content/assets/plugins/raphael/raphael-min.js"></script>
 
-            alert('@ViewBag.Styles');
-
-        })();*@
-    </script>
-
-
+    <!-- Dashboard init -->
+    <script src="~/Content/assets/pages/jquery.dashboard.js"></script>
 }
-

@@ -1,28 +1,35 @@
-﻿using System;
+﻿using CyberAcademy.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
 namespace CyberAcademy.Web.Controllers
 {
+    [Authorize()]
     public class HomeController : Controller
     {
-        [ChildActionOnly]
-        public ActionResult SomePage()
+
+        public HomeController()
         {
-            return PartialView();
+        }
+
+        public string GetDate()
+        {
+            return DateTime.Now.ToLongDateString();
         }
         // GET: Home
         public ActionResult Index()
         {
-            this.ViewData["Male"] = Url.Content("~/images/profile.png");
+            var claimsPrincipal = this.User.Identity as ClaimsIdentity;
 
-            this.ViewData["Female"] = Url.Content("~/images/profile2.png");
+           var claim = claimsPrincipal.FindFirst("PassportUrl");
 
-            this.ViewBag.Styles = "border: 1px solid green;";
+            ViewBag.ProfileUrl = claim.Value;
+            ViewData["SalesAnalyticsCaptions"] = "Sales Analytics";
             return View();
         }
-
     }
 }

@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "CreateUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-contentbar">
+
+    <!-- START PAGE CONTENT -->
+    <div id="page-right-content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="header-title m-t-0 m-b-20">Create User</h4>
+                </div>
+            </div> <!-- end row -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class="form-horizontal" role="form" method="post" id="userForm">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Username</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="username" name="username" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="example-email">Password</label>
+                                    <div class="col-md-10">
+                                        <input type="password" id="password" name="password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Confirm Password</label>
+                                    <div class="col-md-10">
+                                        <input type="password" class="form-control" id="rpassword" name="rpassword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Email</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" placeholder="placeholder" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Role</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" name="roleId" id="roleId">
+                                            @foreach (var role in ViewBag.Roles)
+                                            {
+                                                <option value="@role.Id">@role.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div> <!-- end col -->
+            </div>
+        </div>
+        <!-- end container -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="pull-right hidden-xs">
+                            Project Completed <strong class="text-custom">43%</strong>.
+                        </div>
+                        <div>
+                            <strong>Simple Admin</strong> - Copyright &copy; 2017
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end footer -->
+
+    </div>
+    <!-- End #page-right-content -->
+
+    <div class="clearfix"></div>
+
+</div>
+<!-- end .page-contentbar -->
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    <script>
+        $(function () {
+
+            $('#userForm').validate({
+
+                rules: {
+                    username: {
+                        required: true
+                    },
+                    email: {
+                        email: true,
+                        required: true
+                    },
+                    password: {
+                        required: true
+                    },
+                    rpassword: {
+                        equalTo: '#password'
+                    }
+
+                },
+
+                messages: {
+                    username: {
+                        required: 'please enter your username'
+                    },
+                    rpassword: {
+                        equalTo: "Password don't match"
+                    }
+                }
+            });
+
+            $('#userForm').bind('submit', function (ev) {
+
+                ev.preventDefault(false);
+
+                if (!$(ev.target).valid()) {
+                    return;
+                }
+
+                var formData = {};
+                formData.Username = $('#username').val();
+                formData.Password = $('#password').val();
+                formData.RPassword = $('#rpassword').val();
+                formData.Email = $('#email').val();
+                formData.RoleId = $('#roleId').val();
+
+                $.ajax({
+                    url: '/api/settingsapi/create_user',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(formData),
+                    error: function () {
+
+                        alert('error occurred, try again');
+                    },
+                    success: function () { }
+                });
+
+            });
+
+        })
+    </script>
+
+}
