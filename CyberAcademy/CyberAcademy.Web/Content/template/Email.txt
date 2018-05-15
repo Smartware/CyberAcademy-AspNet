@@ -1,0 +1,8 @@
+﻿<a href=\"www.sterlingbankng.com\"><img src=\"https://lh3.googleusercontent.com/HyLOrpRq7yeaMtTex9ip-2cRekMm1mV9Q-YquGsZh6qfDMqC0br_IuPgNgQD2XwrNqi2_iD68lfysJMp_i7zhZw0EBArha5uwO-NEUe60j5nIIVC6LTAiMo883MMEslZzbBkjG8yyaydm3097cYMvjBvLS0Agzl3bbJKVvt_sfJ9pRZ6QZSk3hAEVJJBHGLBmrYHZnDu4M9XXaIiaF6kh2MP-5IqGmY0e1cyc8AHemO6MfRZe3LOxSMOM5QR8DKN3EsXlDMqFVN4bKL6YEpfZfNq39J74NoZtyAlthvuRYaS5RWRNIExVH1EQSszsUetR3Txy2QcjTYyeHqnVPg8TiFvnd-IAZ2EvQhnUWQtUnOPaQFKCcnsnfr4fFbkOUOE5w2mQUJvkpPvyuInDFilaL2vxZKo7gYo0Ng2MxT1G9CWq4OxoeFkDVujYzyndG4xkJDzPW30hS_i8QjFdOU8aB6Z-mjmoJZ4JkoG2ftkLLZYPCRBrqJgJesLQMdWm6Rjor2aHUkVcX_StFvP8jopogfwaP2CCjrs4po9036Jxi6KSxkq4qCjHrakoBigpXPrpOEgIwQYk5hxuswvdKL-NCvbuLig7VR5VsvjAbk=w1151-h863-no\">+
+                "</a><br><p>Dear $customerName$,</p>"+
+                "<p>&nbsp;</p><p><strong>Cyberspace Academy Training</strong></p>"+
+                "<p><br />Thanks for your interest in the Cyberspace Academy App.<br />Your One Time Password is: <strong>"+ $PIN$
+                "</strong><br />Please note that it expires in less than <strong>60 seconds</strong>. </p>"+
+            "<p><br />Thank you for listening to us. <br /><br /><span style=\"color: #808080;\">For Further enquiries, Kindly send an email to"+
+            " <span ><a href=\"mailto:customercare@cyberspace.com\">customercare@cyberspace.com</a>"+
+            or call us on<br /> (+234) 0700CYBERSPACE (<strong>0700123456</strong>)<br /> <strong>01-2345678</strong>-9</span>.</span></p>;

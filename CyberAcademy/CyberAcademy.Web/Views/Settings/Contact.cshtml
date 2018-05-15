@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-contentbar">
+
+    <!-- START PAGE CONTENT -->
+    <div id="page-right-content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="header-title m-t-0 m-b-20">Contact</h4>
+                </div>
+            </div> <!-- end row -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class="form-horizontal" role="form" method="post" id="contactForm">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Name</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="name" name="name" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="example-email">Phone Number</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="phone" name="phone" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Email</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" placeholder="placeholder" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Message</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="message" name="message">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div> <!-- end col -->
+            </div>
+        </div>
+        <!-- end container -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="pull-right hidden-xs">
+                            Project Completed <strong class="text-custom">43%</strong>.
+                        </div>
+                        <div>
+                            <strong>Simple Admin</strong> - Copyright &copy; 2017
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end footer -->
+
+    </div>
+    <!-- End #page-right-content -->
+
+    <div class="clearfix"></div>
+
+</div>
+<!-- end .page-contentbar -->
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    <script>
+        $(function () {
+
+            $('#contactForm').validate({
+
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    email: {
+                        email: true,
+                        required: true
+                    },
+                    phone: {
+                        required: true
+                    }
+                    ,
+                    message: {
+                        required: true
+                    }
+
+                },
+
+                messages: {
+                    name: {
+                        required: 'please enter your name'
+                    }
+                }
+            });
+
+            $('#contactForm').bind('submit', function (ev) {
+
+                ev.preventDefault(false);
+
+                if (!$(ev.target).valid()) {
+                    return;
+                }
+
+                var formData = {};
+                formData.Name = $('#name').val();
+                formData.Phone = $('#phone').val();
+                formData.Message = $('#message').val();
+                formData.Email = $('#email').val();
+              
+
+                $.ajax({
+                    url: '/api/settingsapi/contact',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(formData),
+                    error: function () {
+
+                        alert('error occurred, try again');
+                    },
+                    success: function () {
+
+
+                    }
+                });
+
+            });
+
+        })
+    </script>
+
+}

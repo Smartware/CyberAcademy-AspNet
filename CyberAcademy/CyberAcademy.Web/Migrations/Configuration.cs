@@ -62,6 +62,8 @@ namespace CyberAcademy.Web.Migrations
             {
                 userMgr.AddToRole(contact.Id, role);
             }
+
+            
         }
     }
 }
