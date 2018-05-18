@@ -35,6 +35,9 @@ namespace CyberAcademy.Web.Messaging
                 msg.PlainTextContent = message.Body;
             }
 
+          
+            
+
             SendGrid.Response response = await client.SendEmailAsync(msg);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)

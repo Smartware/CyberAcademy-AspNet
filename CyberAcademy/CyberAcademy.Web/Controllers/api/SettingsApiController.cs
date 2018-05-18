@@ -70,6 +70,9 @@ namespace CyberAcademy.Web.Controllers.api
 
                 }
 
+               
+              
+
                 string key = ConfigurationManager.AppSettings["Sendgrid.key"];
 
                 SendGridEmailService svc = new SendGridEmailService(key);
@@ -79,16 +82,17 @@ namespace CyberAcademy.Web.Controllers.api
                 EmailMessage msg = new EmailMessage
                 {
                      Body = htmlBody,
-                      From = "Chuks",
-                      Subject = "Cyberspace TEST",
-                       Recipient = "oriahie@gmail.com"
+                     From = "Chuks",
+                     Subject = "Cyberspace TEST",
+                     Recipient = "oriahie@gmail.com"
                       
 
                 };
 
-                if(svc.SendMail(msg, true).Result == string.Empty)
+                if (svc.SendMail(msg, true).Result != string.Empty)
                 {
-                    return this.Request.CreateResponse(HttpStatusCode.BadRequest, "Error sending mail, pls try again later.");
+                    return this.Request.CreateResponse(HttpStatusCode.BadRequest, "Error sending mail");
+
                 }
 
                 return this.Request.CreateResponse(HttpStatusCode.OK, "Successfully sent your mail!");
