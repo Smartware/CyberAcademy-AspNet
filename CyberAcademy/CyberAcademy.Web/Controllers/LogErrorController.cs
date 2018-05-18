@@ -42,7 +42,8 @@ namespace CyberAcademy.Web.Controllers
             catch (DivideByZeroException ex)
             {
                 Logger logger = LogManager.GetCurrentClassLogger();
-              
+                logger.Warn("");
+                logger.Fatal("");
                 logger.Error(ex, "this too");
 
             }
